@@ -1,0 +1,11 @@
+###
+#Crate a new thought
+POST http://localhost:4000/thot/create-post
+Content-Type: application/json
+
+{
+  "user": "619f8ec2a6c2438bcc495db4",
+  "body": "Sometimes Going through pain is helpful to attain success for the long run, "
+}
+###
+GET http://localhost:4000/thot/post

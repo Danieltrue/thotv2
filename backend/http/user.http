@@ -1,0 +1,15 @@
+###
+#Register a User
+POST http://localhost:4000/thot/register/
+Content-Type: application/json
+
+{
+  "username": "brad johnson",
+  "email": "danielokezie76@gmail.com",
+  "role": "Retar Manager",
+  "password": 1234567
+}
+
+###
+GET http://localhost:4000/thot/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjMxZWQyNWQ2MGUyNjIwNjdiYzBmZCIsImlhdCI6MTYzOTEyODkyMiwiZXhwIjoxNjQxNzIwOTIyfQ.PqkTPxFHZlbjFqCqVdhjQAiw58_LRRAH3g3e-1eBhc0
