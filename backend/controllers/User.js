@@ -57,8 +57,12 @@ exports.loginUser = async (req, res, next) => {
     return await res.status(200).json({
       success: true,
       username: foundUser.username,
+      id: foundUser._id,
       email: foundUser.email,
-      role: foundUser.role,
+      profileimage: foundUser.profileimage,
+      followers: foundUser.followers,
+      following: foundUser.following,
+      thoughts: foundUser.thoughts,
       token: generateToken(foundUser._id),
     });
   } catch (err) {
@@ -68,15 +72,15 @@ exports.loginUser = async (req, res, next) => {
 // //@Desc Get Profile
 // //@Route /thot/profile
 // //@Access Private
-// exports.getProfile = async (req, res) => {
-//   try {
-//     const foundUser = await user.findById(req.user._id).select("-password");
+exports.getProfile = async (req, res) => {
+  try {
+    const foundUser = await user.findById(req.user._id).select("-password");
 
-//     if (!foundUser)
-//       return await new ErrorResponse(`${req.user.email} not found`, 404);
-//     //if found
-//     return await res.status(200).json(foundUser);
-//   } catch (err) {
-//     next(new ErrorResponse(`Something Went Wrong`, 401));
-//   }
-// };
+    if (!foundUser)
+      return await new ErrorResponse(`${req.user.email} not found`, 404);
+    //if found
+    return await res.status(200).json(foundUser);
+  } catch (err) {
+    next(new ErrorResponse(`Something Went Wrong`, 401));
+  }
+};

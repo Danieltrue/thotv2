@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const Global = createGlobalStyle`
   :root {
     --brandblue: #185ADB;
-    --branddark: #212121;
+    --branddark: #555;
     --brandwhite: #fff;
     --linecolor: #707070;
     --lightdark: #ECECEC;
@@ -15,11 +15,19 @@ const Global = createGlobalStyle`
     --borderR: 5px;
   }
 
-  html {
-    font-size: 1.6rem;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     color: var(---branddark);
+  }
+
+  html,body {
+    font-size: 1.3rem;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     text-rendering: optimizeLegibility;
+    color: var(---branddark) !important;
   }
 
   .center {

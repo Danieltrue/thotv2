@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
-
+import { useNavigate } from "react-router-dom";
 import Loginstyle from "../style/components/Login.js";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userDetail = useSelector((state) => state.userLogin);
   let { loading, error, userInfo } = userDetail;
 
@@ -22,7 +23,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo);
+      navigate("/");
     }
   }, [dispatch, userInfo]);
 

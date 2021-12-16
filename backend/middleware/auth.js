@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const user = require("../model/User");
+const ErrorResponse = require("../utils/errorResponse");
 
 const protect = async (req, res, next) => {
   let token;
@@ -17,12 +18,12 @@ const protect = async (req, res, next) => {
       next();
     } catch (err) {
       res.status(401);
-      throw new Error("Not Authorized");
+      next(new ErrorResponse(`Not Authorized`, 401));
     }
   }
   if (!token) {
     res.status(401);
-    throw new Error("Not Authorized");
+    next(new ErrorResponse(`Not Authorized`, 401));
   }
 };
 
