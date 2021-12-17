@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import UnLoggedNav from "./UnLoggedNav";
 import LoggedNav from "./LoggedNav";
 
-const Nav = () => {
+const Nav = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
@@ -14,7 +14,11 @@ const Nav = () => {
         <h3 className="logo">thot</h3>
       </div>
       <div>
-        {userInfo ? <LoggedNav userInfo={userInfo} /> : <UnLoggedNav />}
+        {userInfo ? (
+          <LoggedNav btn={props.btn} userInfo={userInfo} />
+        ) : (
+          <UnLoggedNav />
+        )}
       </div>
     </Navstyle>
   );

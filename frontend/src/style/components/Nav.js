@@ -7,6 +7,7 @@ const Navstyle = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--borderLine);
   //Unlogged Nav style
   .unloggednav__style {
     font-size: 60%;
@@ -25,6 +26,18 @@ const Navstyle = styled.nav`
   //logged Nav style
   .logged_style {
     font-size: 60%;
+    div {
+      margin-left: 0.5rem;
+      a {
+        button {
+          padding: 0.5rem;
+          border-radius: 50px;
+          background-color: var(--brandblue);
+          width: 90px;
+          color: var(--brandwhite);
+        }
+      }
+    }
     .username {
       text-transform: capitalize;
     }

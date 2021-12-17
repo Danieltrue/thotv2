@@ -6,6 +6,7 @@ import Global from "./style/components/Global";
 import Login from "./screen/Login";
 import Register from "./screen/Register";
 import Home from "./screen/Home";
+import Write from "./screen/Write";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/write" element={<Write />} />
         </Routes>
       </BrowserRouter>
     </div>

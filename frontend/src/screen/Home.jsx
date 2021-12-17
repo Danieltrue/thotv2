@@ -16,7 +16,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <Homestyle>
-      <Nav />
+      <Nav btn={true} />
       <div className="main__home__inner center-sbtw">
         <nav className="inner__nav">
           <div className="category__box">

@@ -2,8 +2,14 @@ import styled from "styled-components";
 
 const CategoryBoxstyle = styled.div`
   background-color: var(--brandwhite);
-  min-height: 200px;
+  min-height: 300px;
   padding: var(--rem);
+  border: 1px solid var(--borderLine);
+  border-radius: var(--borderR);
+  h5 {
+    font-size: 70%;
+    margin-bottom: 0.5rem;
+  }
   form {
     input {
       width: 100%;

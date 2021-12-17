@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LoggedNav = (props) => {
   const [data, setData] = useState(props.userInfo.data);
-  const [dp, setDp] = useState("OO");
+  const [dp, setDp] = useState("");
 
   useEffect(() => {
     const user = data.username.split(" ");
@@ -28,6 +28,17 @@ const LoggedNav = (props) => {
           <Link to="/">
             <li>{dp}</li>
           </Link>
+        )}
+      </div>
+      <div>
+        {!props.btn ? (
+          ""
+        ) : (
+          <li>
+            <Link to="/write">
+              <button>Share</button>
+            </Link>
+          </li>
         )}
       </div>
     </ul>

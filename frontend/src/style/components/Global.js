@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
   :root {
-    --brandblue: #185ADB;
+    --brandblue: #0099ee;
     --branddark: #555;
     --brandwhite: #fff;
     --linecolor: #707070;
@@ -13,6 +15,7 @@ const Global = createGlobalStyle`
     --rem: 1rem;
     --Divrem: 0.5rem;
     --borderR: 5px;
+    --borderLine: #e7e9ee;
   }
 
   * {
@@ -24,8 +27,8 @@ const Global = createGlobalStyle`
 
   html,body {
     font-size: 1.3rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
     text-rendering: optimizeLegibility;
     color: var(---branddark) !important;
   }
@@ -62,6 +65,15 @@ const Global = createGlobalStyle`
   .logo {
     color: var(--brandblue);
     font-family: Forte, sans-serif;
+  }
+
+  button.btn {
+    background-color: var(--brandblue);
+    color: var(--brandwhite);
+    border-radius: 40px;
+    font-size: 60%;
+    padding: 0.5rem 1rem;
+    width: 100px;
   }
 `;
 
