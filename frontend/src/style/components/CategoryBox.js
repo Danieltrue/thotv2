@@ -16,9 +16,9 @@ const CategoryBoxstyle = styled.div`
       background-color: var(--lightdark);
       border-radius: var(--borderR);
       padding: 0.5rem;
-      font-size: 60%;
+      font-size: 70%;
       &::placeholder {
-        font-size: 60%;
+        font-size: 70%;
       }
     }
   }

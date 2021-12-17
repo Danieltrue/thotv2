@@ -11,7 +11,6 @@ const LoggedNav = (props) => {
     const two = user[1].split("")[0];
     if (data) {
       setDp(one + two);
-      console.log(one);
     }
   }, [props]);
   return (
