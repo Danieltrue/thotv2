@@ -29,7 +29,7 @@ const Spinnerstyle = styled.div`
   .circle__svg-circle circle {
     stroke: var(--brandwhite);
     stroke-dasharray: 80px;
-    stroke-dashoffset: 60px;
+    stroke-dashoffset: 70px;
   }
 `;
 

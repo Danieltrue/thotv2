@@ -7,13 +7,14 @@ import {
   userLoginReducer,
   userLoggedInReducer,
 } from "./reducers/userReducer";
-import { postThought } from "./reducers/postReducer";
+import { postThought, getAllThought } from "./reducers/postReducer";
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
   userLoged: userLoggedInReducer,
   postedThought: postThought,
+  allThought: getAllThought,
 });
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))

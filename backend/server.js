@@ -1,5 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv").config({ path: "./config/.env" });
+const dotenv = require("dotenv").config({ path: "./config/cf.env" });
 const colors = require("colors");
 const middleware = require("./middleware/middleware");
 //init

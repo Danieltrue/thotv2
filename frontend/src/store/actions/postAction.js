@@ -3,6 +3,9 @@ import {
   POST_THOUGHT_REQUEST,
   POST_THOUGHT_SUCCESS,
   POST_THOUGHT_FAIL,
+  GET_ALL_POST_THOUGHT_REQUEST,
+  GET_ALL_POST_THOUGHT_SUCCESS,
+  GET_ALL_POST_THOUGHT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought =
@@ -45,3 +48,32 @@ export const postThought =
       });
     }
   };
+
+export const getAllThought = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ALL_POST_THOUGHT_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    const data = await axios.get("/thot/post/", config);
+
+    dispatch({
+      type: GET_ALL_POST_THOUGHT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_POST_THOUGHT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.responseerror.response.data.message
+          : error.response,
+    });
+  }
+};
