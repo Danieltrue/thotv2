@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
+    "framer-motion": "^5.5.5",
     "javascript-time-ago": "^2.3.10",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",

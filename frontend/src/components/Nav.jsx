@@ -13,7 +13,7 @@ const Nav = (props) => {
       <div>
         <h3 className="logo">thot</h3>
       </div>
-      <div>
+      <div className="navs">
         {userInfo ? (
           <LoggedNav btn={props.btn} userInfo={userInfo} />
         ) : (

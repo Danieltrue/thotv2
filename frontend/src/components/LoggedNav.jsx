@@ -14,33 +14,36 @@ const LoggedNav = (props) => {
     }
   }, [props]);
   return (
-    <ul className="logged_style center-sbtw">
-      <div className="username">
-        <li>{data.username}</li>
-      </div>
-      <div className="profileimage center">
-        {data.profileimage !== "" ? (
-          <Link to="/">
-            <img src={data.profileimage} />
-          </Link>
-        ) : (
-          <Link to="/">
-            <li>{dp}</li>
-          </Link>
-        )}
-      </div>
-      <div>
+    <div className="nav__container">
+      <ul className="logged_style center-sbtw">
+        <div className="search__bar">
+          <input type="text" placeholder="Search For Author" />
+        </div>
+        <div className="profileimage center">
+          {data.profileimage !== "" ? (
+            <Link to="/">
+              <img src={data.profileimage} />
+            </Link>
+          ) : (
+            <Link to="/">
+              <li>{dp}</li>
+            </Link>
+          )}
+        </div>
+        <div className="username">
+          <li>{data.username}</li>
+        </div>
+      </ul>
+      <div className="floating__btn">
         {!props.btn ? (
           ""
         ) : (
-          <li>
-            <Link to="/write">
-              <button>Share</button>
-            </Link>
-          </li>
+          <Link to="/write">
+            <button>Share</button>
+          </Link>
         )}
       </div>
-    </ul>
+    </div>
   );
 };
 

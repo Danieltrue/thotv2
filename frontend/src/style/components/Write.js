@@ -40,7 +40,9 @@ const Writestyle = styled.div`
       padding: 0;
       margin-top: 1rem;
       button {
-        justify-content: flex-end;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

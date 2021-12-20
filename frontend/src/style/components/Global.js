@@ -5,10 +5,10 @@ const Global = createGlobalStyle`
 
   :root {
     --brandblue: #0099ee;
-    --branddark: #555;
+    --branddark: #a1acb1;
     --brandwhite: #fff;
     --linecolor: #707070;
-    --lightdark: #ECECEC;
+    --lightdark: #e6f5fd;
     --errorLight: #FFEEEE;
     --errorbold: #FF5151;
     --layoutBg: #FCFCFC;
@@ -23,6 +23,10 @@ const Global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     color: var(---branddark);
+  }
+
+  input::placeholder {
+    color: #a1acb1;
   }
 
   html,body {

@@ -24,13 +24,12 @@ const ThoughtSchema = new Schema({
     type: Date,
     default: new Date(),
   },
-  // category: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "category",
-  //     min: 2,
-  //   },
-  // ],
+  category: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+    },
+  ],
 });
 
 module.exports = mongoose.model("thought", ThoughtSchema);

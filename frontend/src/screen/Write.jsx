@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { postThought } from "../store/actions/postAction";
+import Spinner from "../components/Spinner";
 
 const Write = () => {
-  let [message, setMessage] = useState("Share Your Thoughts...");
+  let [message, setMessage] = useState("");
+  let [topic, setTopic] = useState("");
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -19,24 +21,23 @@ const Write = () => {
 
   //post selector
   const postedThought = useSelector((state) => state.postedThought);
-  let { loading2, error2, post } = postedThought;
 
   const navigate = useNavigate();
 
   function changeTheData(msg) {
-    setMessage(final);
+    setMessage(msg);
   }
 
-  function handlePost() {
-    dispatch(postThought(message, "boss"));
-    console.log(post);
+  function handlePost(e) {
+    e.preventDefault();
+    dispatch(postThought(message, topic));
   }
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
-  });
+  }, [userInfo]);
 
   return (
     <Writestyle>
@@ -59,10 +60,16 @@ const Write = () => {
             />
           </div>
           <div className="category-search-post">
-            <input type="text" placeholder="Category" />
+            <input
+              type="text"
+              placeholder="Category"
+              onChange={(evt) => setTopic(evt.target.value)}
+            />
           </div>
           <div className="button-pack">
-            <button className="btn">Post</button>
+            <button className="btn">
+              {postedThought.loading ? <Spinner /> : "Post"}
+            </button>
           </div>
         </form>
       </Container>

@@ -8,9 +8,14 @@ const Navstyle = styled.nav`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--borderLine);
+  .navs {
+    width: 50%;
+  }
   //Unlogged Nav style
   .unloggednav__style {
     font-size: 60%;
+    display: flex;
+    justify-content: flex-end;
     div {
       margin-left: 1rem;
     }
@@ -24,19 +29,13 @@ const Navstyle = styled.nav`
     }
   }
   //logged Nav style
+  .nav__container {
+    width: auto;
+  }
   .logged_style {
     font-size: 60%;
     div {
       margin-left: 0.5rem;
-      a {
-        button {
-          padding: 0.5rem;
-          border-radius: 50px;
-          background-color: var(--brandblue);
-          width: 90px;
-          color: var(--brandwhite);
-        }
-      }
     }
     .username {
       text-transform: capitalize;
@@ -50,6 +49,35 @@ const Navstyle = styled.nav`
       margin-left: 0.5rem;
       li {
         text-transform: uppercase;
+      }
+    }
+    .search__bar {
+      flex: 1;
+      input {
+        background-color: var(--lightdark);
+        border-radius: 30px;
+        padding: 0.4rem 1rem;
+        &::placeholder {
+          font-size: 80%;
+        }
+      }
+    }
+  }
+
+  //floating btn
+
+  .floating__btn {
+    position: fixed;
+    top: 90%;
+    right: 2%;
+    a {
+      button {
+        padding: 0.5rem;
+        font-size: 60%;
+        border-radius: 50px;
+        background-color: var(--brandblue);
+        width: 90px;
+        color: var(--brandwhite);
       }
     }
   }

@@ -25,7 +25,7 @@ export const postThought =
         },
       };
 
-      const data = axios.post(
+      const data = await axios.post(
         "/thot/create-post",
         { thought, category, user },
         config
