@@ -17,6 +17,8 @@ const Home = () => {
   //Search for the post
   const allThought = useSelector((state) => state.allThought);
 
+  console.log(allThought);
+
   useEffect(() => {
     dispatch(getAllThought());
     if (allThought.posts) {

@@ -53,7 +53,8 @@ exports.getAllThought = async (req, res, next) => {
   try {
     const thoughtData = await thought
       .find()
-      .populate({ path: "user", select: "username role profileimage" });
+      .populate({ path: "user", select: "username role profileimage" })
+      .populate({ path: "category" });
 
     if (!thoughtData)
       return await next(new ErrorResponse(`Thought Not Found`, 404));

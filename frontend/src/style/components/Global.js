@@ -8,7 +8,7 @@ const Global = createGlobalStyle`
     --branddark: #a1acb1;
     --brandwhite: #fff;
     --linecolor: #707070;
-    --lightdark: #e6f5fd;
+    --lightdark: #f1f1f1;
     --errorLight: #FFEEEE;
     --errorbold: #FF5151;
     --layoutBg: #FCFCFC;
@@ -16,6 +16,9 @@ const Global = createGlobalStyle`
     --Divrem: 0.5rem;
     --borderR: 5px;
     --borderLine: #e7e9ee;
+    --backgroundDark: #e2e2e2;
+    --topic-back: #f1f1f1;
+    --topic-color: #f1f1f1;
   }
 
   * {
