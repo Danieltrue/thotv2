@@ -5,6 +5,9 @@ import {
   GET_ALL_POST_THOUGHT_REQUEST,
   GET_ALL_POST_THOUGHT_SUCCESS,
   GET_ALL_POST_THOUGHT_FAIL,
+  LIKE_POST_THOUGHT_REQUEST,
+  LIKE_POST_THOUGHT_SUCCESS,
+  LIKE_POST_THOUGHT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought = (state = {}, action) => {
@@ -27,6 +30,19 @@ export const getAllThought = (state = {}, action) => {
     case GET_ALL_POST_THOUGHT_SUCCESS:
       return { loading: false, posts: action.payload };
     case GET_ALL_POST_THOUGHT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const likePost = (state = {}, action) => {
+  switch (action.type) {
+    case LIKE_POST_THOUGHT_REQUEST:
+      return { loading: true };
+    case LIKE_POST_THOUGHT_SUCCESS:
+      return { loading: false, posts: action.payload };
+    case LIKE_POST_THOUGHT_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

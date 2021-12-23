@@ -5,7 +5,11 @@ const protect = require("../middleware/auth");
 //USER CONTROLLER
 const { registerUser, loginUser, getProfile } = require("../controllers/User");
 //THOUGHT CONTROLLER
-const { createThought, getAllThought } = require("../controllers/Thought");
+const {
+  createThought,
+  getAllThought,
+  likeThought,
+} = require("../controllers/Thought");
 //Route
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
@@ -13,4 +17,5 @@ router.route("/profile").get(protect, getProfile);
 //
 router.route("/create-post").post(protect, createThought);
 router.route("/post").get(getAllThought);
+router.route("/post/like/:id").put(protect, likeThought);
 module.exports = router;

@@ -14,6 +14,12 @@ const ThoughtSchema = new Schema({
     type: Number,
     default: 0,
   },
+  wholiked: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
   // comment: [
   //   {
   //     type: mongoose.Schema.Types.ObjectId,

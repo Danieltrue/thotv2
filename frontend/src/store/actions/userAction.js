@@ -11,38 +11,43 @@ import {
   USER_IS_LOGGED_FAIL,
 } from "../constants/userConstant";
 
-export const register = (username, email, password) => async (dispatch) => {
-  try {
-    dispatch({
-      type: USER_REGISTER_REQUEST,
-    });
+export const register =
+  (username, email, password, firstname, lastname) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_REGISTER_REQUEST,
+      });
 
-    const config = {
-      headers: {
-        "Content-type": "Application/json",
-      },
-    };
+      const config = {
+        headers: {
+          "Content-type": "Application/json",
+        },
+      };
+      //Make Validation
+      if (password.length < 5) {
+        throw "Password is too weak";
+      } else {
+        const data = await axios.post(
+          "/thot/register",
+          { username, email, password, firstname, lastname },
+          config
+        );
 
-    const data = await axios.post(
-      "/thot/register",
-      { username, email, password },
-      config
-    );
-
-    dispatch({
-      type: USER_REGISTER_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: USER_REGISTER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.responseerror.response.data.message
-          : error.response,
-    });
-  }
-};
+        dispatch({
+          type: USER_REGISTER_SUCCESS,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.responseerror.response.data.message
+            : error.response,
+      });
+    }
+  };
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({

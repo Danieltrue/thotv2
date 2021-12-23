@@ -6,6 +6,9 @@ import {
   GET_ALL_POST_THOUGHT_REQUEST,
   GET_ALL_POST_THOUGHT_SUCCESS,
   GET_ALL_POST_THOUGHT_FAIL,
+  LIKE_POST_THOUGHT_REQUEST,
+  LIKE_POST_THOUGHT_SUCCESS,
+  LIKE_POST_THOUGHT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought =
@@ -70,6 +73,43 @@ export const getAllThought = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_ALL_POST_THOUGHT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.responseerror.response.data.message
+          : error.response,
+    });
+  }
+};
+
+export const likepost = (postId) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LIKE_POST_THOUGHT_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.data.token}`,
+      },
+    };
+    const data = await axios.put(
+      `/thot/post/like/${userInfo.data.id}?postid=${postId}`,
+      {},
+      config
+    );
+
+    dispatch({
+      type: LIKE_POST_THOUGHT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LIKE_POST_THOUGHT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.responseerror.response.data.message

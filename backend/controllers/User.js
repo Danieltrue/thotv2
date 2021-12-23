@@ -21,7 +21,9 @@ exports.registerUser = async (req, res, next) => {
 
     //create a new user
     const userData = await user.create({
-      username: req.body.username.toLowerCase(),
+      firstname: req.body.firstname.toLowerCase(),
+      lastname: req.body.lastname.toLowerCase(),
+      username: "@thot" + req.body.username.toLowerCase(),
       email: req.body.email.toLowerCase(),
       password: hashedPassword,
     });
@@ -57,6 +59,8 @@ exports.loginUser = async (req, res, next) => {
     return await res.status(200).json({
       success: true,
       username: foundUser.username,
+      firstname: foundUser.firstname,
+      lastname: foundUser.lastname,
       id: foundUser._id,
       email: foundUser.email,
       profileimage: foundUser.profileimage,

@@ -11,7 +11,7 @@ const Global = createGlobalStyle`
     --lightdark: #f1f1f1;
     --errorLight: #FFEEEE;
     --errorbold: #FF5151;
-    --layoutBg: #FCFCFC;
+    --layoutBg: #fafdff;
     --rem: 1rem;
     --Divrem: 0.5rem;
     --borderR: 5px;

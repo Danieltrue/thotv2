@@ -17,8 +17,6 @@ const Home = () => {
   //Search for the post
   const allThought = useSelector((state) => state.allThought);
 
-  console.log(allThought);
-
   useEffect(() => {
     dispatch(getAllThought());
     if (allThought.posts) {
@@ -33,11 +31,11 @@ const Home = () => {
     <Homestyle>
       <Nav btn={true} />
       <div className="main__home__inner center-sbtw">
-        <nav className="inner__nav">
+        {/* <nav className="inner__nav">
           <div className="category__box">
             <CategoryBox />
           </div>
-        </nav>
+        </nav> */}
         <main className="card__nav">
           {loading ? "loading" : <CardBox props={allThought.posts} />}
         </main>

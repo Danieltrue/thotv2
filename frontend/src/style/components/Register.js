@@ -49,6 +49,13 @@ const Registerstyle = styled.div`
             }
           }
         }
+        .double__input {
+          display: flex;
+          justify-content: space-between;
+          input {
+            width: 48%;
+          }
+        }
       }
     }
   }

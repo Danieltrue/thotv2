@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Cardstyle = styled.div`
   background-color: var(--brandwhite);
-  font-size: 80%;
+  font-size: 70%;
   padding: var(--rem);
   border-radius: var(--borderR);
   .detail__inner {
@@ -34,13 +34,19 @@ const Cardstyle = styled.div`
         font-weight: 700;
       }
     }
+    .author__ft {
+      margin-top: -12px;
+      button {
+        transform: rotate(90deg);
+      }
+    }
   }
   .topic {
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     button {
       font-size: 70%;
       background-color: var(--topic-back);
-      padding: 0.5rem 0.7rem;
+      padding: 0.3rem 0.7rem;
       border-radius: var(--borderR);
     }
   }
@@ -56,9 +62,9 @@ const Cardstyle = styled.div`
   }
 
   .post__features {
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     border-top: 1px solid var(--layoutBg);
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     ul {
       width: 120px;
       li {
@@ -72,6 +78,22 @@ const Cardstyle = styled.div`
     }
     .time {
       font-size: 60%;
+      opacity: 0.5;
+      display: flex;
+      p {
+        padding: 0 0.1rem;
+      }
+    }
+  }
+
+  .post--meta-fill {
+    ul {
+      flex-direction: row;
+      width: 60px;
+      button {
+        padding: 0.1rem;
+        opacity: 0.6;
+      }
     }
   }
 `;

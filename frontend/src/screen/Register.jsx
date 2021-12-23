@@ -8,6 +8,8 @@ import { register } from "../store/actions/userAction";
 
 const Register = () => {
   const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +20,7 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(register(username, email, password));
+    dispatch(register(username, email, password, firstname, lastname));
   }
 
   useEffect(() => {
@@ -38,6 +40,22 @@ const Register = () => {
             <h3 className="logo">thot</h3>
           </div>
           <form className="register__form" onSubmit={handleSubmit}>
+            <div className="double__input">
+              <input
+                type="text"
+                name="firstname"
+                placeholder="Enter your Firstname"
+                onChange={(e) => setFirstname(e.target.value)}
+                required
+              />
+              <input
+                type="text"
+                name="lastname"
+                placeholder="Enter your Lastname"
+                onChange={(e) => setLastname(e.target.value)}
+                required
+              />
+            </div>
             <div>
               <input
                 type="text"

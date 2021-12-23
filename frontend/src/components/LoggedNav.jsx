@@ -7,8 +7,9 @@ const LoggedNav = (props) => {
 
   useEffect(() => {
     const user = data.username.split(" ");
-    const one = user[0].split("")[0];
-    const two = user[1].split("")[0];
+    const one = data.firstname.split("")[0];
+    const two = data.lastname.split("")[0];
+
     if (data) {
       setDp(one + two);
     }
@@ -31,7 +32,7 @@ const LoggedNav = (props) => {
           )}
         </div>
         <div className="username">
-          <li>{data.username}</li>
+          <li>{data.username.replace("@thot", "")}</li>
         </div>
       </ul>
       <div className="floating__btn">

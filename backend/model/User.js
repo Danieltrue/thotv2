@@ -8,9 +8,17 @@ const UserSchema = new Schema({
     min: 3,
     max: 15,
   },
+  firstname: {
+    type: String,
+    required: ["Enter your Firstname", true],
+  },
+  lastname: {
+    type: String,
+    required: ["Enter your Lastname", true],
+  },
   email: {
     type: String,
-    required: [true, "Please What your role"],
+    required: [true, "Please What your Email"],
     match: [
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
       "Please add a valid email",
@@ -24,13 +32,29 @@ const UserSchema = new Schema({
     type: String,
     default: "",
   },
+  datejoined: {
+    type: Date,
+    default: Date.now(),
+  },
   thought: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "thought",
     },
   ],
+  liked: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "thought",
+    },
+  ],
   followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  muteduserhate: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",

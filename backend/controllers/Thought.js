@@ -53,13 +53,36 @@ exports.getAllThought = async (req, res, next) => {
   try {
     const thoughtData = await thought
       .find()
-      .populate({ path: "user", select: "username role profileimage" })
+      .populate({ path: "user", select: "-password" })
       .populate({ path: "category" });
 
     if (!thoughtData)
       return await next(new ErrorResponse(`Thought Not Found`, 404));
 
     return await res.status(200).send(thoughtData);
+  } catch (err) {}
+};
+//Like Thoughts
+//@Route /thot/post/like/:id?postid=postid
+//@Route Private
+exports.likeThought = async (req, res, next) => {
+  try {
+    const userWhoLike = req.params.id;
+    const postId = req.query.postid;
+
+    //Find the user
+    const userWhoLiked = await user.findOne({ _id: req.params.id });
+    const postLiked = await thought.findOne({ _id: req.query.postid });
+
+    if (!userWhoLiked)
+      return await next(new ErrorResponse(`Sorry Something Went Wrong`, 404));
+
+    //if user was found
+    userWhoLiked.liked.push(postId);
+    await userWhoLiked.save();
+
+    postLiked.wholiked.push(userWhoLike);
+    await postLiked.save();
   } catch (err) {
     next(new ErrorResponse(`Something Went Wrong`, 500));
   }
