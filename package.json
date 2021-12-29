@@ -1,0 +1,25 @@
+{
+  "name": "thot",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000t\u0000h\u0000o\u0000t\u0000v\u00002\u0000\r\u0000 \u0000#\u0000 \u0000t\u0000h\u0000o\u0000t\u0000v\u00002\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danieltrue/thotv2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danieltrue/thotv2/issues"
+  },
+  "homepage": "https://github.com/Danieltrue/thotv2#readme",
+  "devDependencies": {
+    "concurrently": "^6.5.1"
+  }
+}

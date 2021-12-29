@@ -77,12 +77,24 @@ exports.likeThought = async (req, res, next) => {
     if (!userWhoLiked)
       return await next(new ErrorResponse(`Sorry Something Went Wrong`, 404));
 
-    //if user was found
-    userWhoLiked.liked.push(postId);
-    await userWhoLiked.save();
+    if (userWhoLiked.liked.includes(postId) === true) {
+      //if user was found
+      userWhoLiked.liked.pop(postId);
+      await userWhoLiked.save();
+    } else {
+      userWhoLiked.liked.push(postId);
+      await userWhoLiked.save();
+    }
 
-    postLiked.wholiked.push(userWhoLike);
-    await postLiked.save();
+    if (postLiked.wholiked.includes(userWhoLike) === true) {
+      postLiked.wholiked.pop(userWhoLike);
+      postLiked.likes--;
+      await postLiked.save();
+    } else {
+      postLiked.wholiked.push(userWhoLike);
+      postLiked.likes = postLiked.wholiked.length;
+      await postLiked.save();
+    }
   } catch (err) {
     next(new ErrorResponse(`Something Went Wrong`, 500));
   }

@@ -3,6 +3,8 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_REGISTRATION_VALIDATION,
+  USER_REGISTRATION_VALIDATION_NAME,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
@@ -10,6 +12,17 @@ import {
   USER_IS_LOGGED_SUCCESS,
   USER_IS_LOGGED_FAIL,
 } from "../constants/userConstant";
+
+//Custom error
+let error;
+const customError = (err) => {
+  error = {
+    data: {
+      error: err,
+    },
+  };
+  return error;
+};
 
 export const register =
   (username, email, password, firstname, lastname) => async (dispatch) => {
@@ -23,21 +36,17 @@ export const register =
           "Content-type": "Application/json",
         },
       };
-      //Make Validation
-      if (password.length < 5) {
-        throw "Password is too weak";
-      } else {
-        const data = await axios.post(
-          "/thot/register",
-          { username, email, password, firstname, lastname },
-          config
-        );
 
-        dispatch({
-          type: USER_REGISTER_SUCCESS,
-          payload: data,
-        });
-      }
+      const data = await axios.post(
+        "/thot/register",
+        { username, email, password, firstname, lastname },
+        config
+      );
+
+      dispatch({
+        type: USER_REGISTER_SUCCESS,
+        payload: data,
+      });
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,

@@ -20,12 +20,7 @@ const ThoughtSchema = new Schema({
       ref: "user",
     },
   ],
-  // comment: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: comment,
-  //   },
-  // ],
+
   dateposted: {
     type: Date,
     default: new Date(),

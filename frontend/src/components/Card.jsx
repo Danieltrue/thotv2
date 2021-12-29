@@ -21,6 +21,8 @@ const Card = ({ post }) => {
   const [dp, setDp] = useState("");
   const [postDate, setPostDate] = useState("");
 
+  console.log(post);
+
   useEffect(() => {
     const one = post.user.firstname.split("")[0];
     const two = post.user.lastname.split("")[0];
@@ -72,7 +74,7 @@ const Card = ({ post }) => {
         <ul className="center-sbtw">
           <li>
             <button>
-              <span>0</span> Likes
+              <span>{post.wholiked.length}</span> Likes
             </button>
           </li>
           <li>
