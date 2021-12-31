@@ -33,6 +33,10 @@ const Cardstyle = styled.div`
       h5 {
         font-weight: 700;
       }
+      p {
+        font-size: 60%;
+        opacity: 0.7;
+      }
     }
     .author__ft {
       margin-top: -12px;
@@ -41,18 +45,13 @@ const Cardstyle = styled.div`
       }
     }
   }
+
   .topic {
     margin-top: 0.2rem;
-    button {
-      font-size: 70%;
-      background-color: var(--topic-back);
-      padding: 0.3rem 0.7rem;
-      border-radius: var(--borderR);
-    }
   }
 
   .thot {
-    font-size: 80%;
+    font-size: 70%;
     span {
       a {
         color: var(--brandblue);

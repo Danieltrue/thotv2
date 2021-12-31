@@ -16,9 +16,9 @@ const Global = createGlobalStyle`
     --Divrem: 0.5rem;
     --borderR: 5px;
     --borderLine: #e7e9ee;
-    --backgroundDark: #e2e2e2;
-    --topic-back: #f1f1f1;
-    --topic-color: #f1f1f1;
+    --backgroundDark: #fafafa;
+    --topic-back: #e6f5fd;
+    --topic-color: #0099ee;
   }
 
   * {

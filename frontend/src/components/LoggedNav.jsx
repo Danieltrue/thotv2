@@ -22,18 +22,20 @@ const LoggedNav = (props) => {
         </div>
         <div className="profileimage center">
           {data.profileimage !== "" ? (
-            <Link to="/">
+            <Link to={`/profile/++/${data.id}/++`}>
               <img src={data.profileimage} />
             </Link>
           ) : (
-            <Link to="/">
+            <Link to={`/profile/++/${data.id}/++`}>
               <li>{dp}</li>
             </Link>
           )}
         </div>
-        <div className="username">
-          <li>{data.username.replace("@thot", "")}</li>
-        </div>
+        <Link to={`/profile/++/${data.id}/++`}>
+          <div className="username">
+            <li>{data.username.replace("@thot", "")}</li>
+          </div>
+        </Link>
       </ul>
       <div className="floating__btn">
         {!props.btn ? (

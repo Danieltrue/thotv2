@@ -13,6 +13,7 @@ import {
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
 import { likepost } from "../store/actions/postAction";
+import Topic from "./Topic";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -20,8 +21,6 @@ const Card = ({ post }) => {
   const dispatch = useDispatch();
   const [dp, setDp] = useState("");
   const [postDate, setPostDate] = useState("");
-
-  console.log(post);
 
   useEffect(() => {
     const one = post.user.firstname.split("")[0];
@@ -56,7 +55,8 @@ const Card = ({ post }) => {
               )}
             </div>
             <li className="profileName">
-              <h5>{post.user.username.replace("@thot", "")}</h5>
+              <h5>{post.user.firstname + " " + post.user.lastname}</h5>
+              <p>{post.user.username.replace("@thot", "@")}</p>
             </li>
           </ul>
           <div className="author__ft"></div>
@@ -67,7 +67,7 @@ const Card = ({ post }) => {
       </div>
       <div className="topic">
         {post.category.map((topic) => {
-          return <button>{"#" + topic.name}</button>;
+          return <Topic topicname={topic.name} />;
         })}
       </div>
       <div className="post__features center-sbtw">

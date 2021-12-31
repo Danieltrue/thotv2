@@ -19,7 +19,7 @@ const CardBox = ({ props }) => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {props.data.map((post) => {
+        {props.data.reverse().map((post) => {
           return <Card post={post} />;
         })}
       </Masonry>

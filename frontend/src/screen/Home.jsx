@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import CategoryBox from "../components/CategoryBox";
 import Nav from "../components/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import Homestyle from "../style/components/Home";
@@ -31,11 +30,6 @@ const Home = () => {
     <Homestyle>
       <Nav btn={true} />
       <div className="main__home__inner center-sbtw">
-        {/* <nav className="inner__nav">
-          <div className="category__box">
-            <CategoryBox />
-          </div>
-        </nav> */}
         <main className="card__nav">
           {loading ? "loading" : <CardBox props={allThought.posts} />}
         </main>

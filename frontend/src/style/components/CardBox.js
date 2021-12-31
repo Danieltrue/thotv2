@@ -4,17 +4,17 @@ const CardBoxstyle = styled.div`
   padding: 1rem;
   .my-masonry-grid {
     display: flex;
-    margin-left: -30px;
+    margin-left: -10px;
     width: auto;
   }
   .my-masonry-grid_column {
-    padding-left: 30px;
+    padding-left: 10px;
     background-clip: padding-box;
   }
 
   /* Style your items */
   .my-masonry-grid_column > div {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 `;
 
