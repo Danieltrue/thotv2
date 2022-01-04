@@ -2,19 +2,28 @@ import React, { useEffect, useState } from "react";
 import Profilestyle from "../style/components/Profile";
 import Container from "../components/Container";
 import { useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import {
+  useNavigate,
+  Link,
+  useParams,
+  Outlet,
+  useOutlet,
+  OutletProps,
+  NavLink,
+} from "react-router-dom";
+import Thot from "../components/Thot";
 
 const Profile = () => {
   const [dp, setDp] = useState("");
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
+  const params = useParams();
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     }
-    const user = userInfo.data.username.split(" ");
     const one = userInfo.data.firstname.split("")[0];
     const two = userInfo.data.lastname.split("")[0];
     if (userInfo.data) {
@@ -68,7 +77,39 @@ const Profile = () => {
             </ul>
           </div>
         </div>
-        <main className="user__data"></main>
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        <main className="user__data">
+          <nav>
+            <ul>
+              <NavLink
+                to="thot"
+                className={({ isActive }) =>
+                  isActive ? "activeBar" : undefined
+                }
+              >
+                <button>Thots</button>
+              </NavLink>
+              <Link to="/">
+                <button>Liked & Rethot</button>
+              </Link>
+            </ul>
+          </nav>
+          <menu>
+            <div className="thots">
+              <Thot params={params} />
+            </div>
+          </menu>
+        </main>
       </Container>
     </Profilestyle>
   );

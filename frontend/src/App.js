@@ -19,7 +19,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
-          <Route path="/profile/++/:id/++" element={<Profile />} />
+          <Route path="/write/:id/edit" element={<Write edit={true} />} />
+          <Route path="/profile/++/:id/++" element={<Profile />}>
+            <Route index path="thot" element={<h1>jhddgsikdgad</h1>} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

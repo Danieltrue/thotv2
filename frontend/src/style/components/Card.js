@@ -94,6 +94,27 @@ const Cardstyle = styled.div`
         opacity: 0.6;
       }
     }
+    .profileFt {
+      width: 110px;
+      button {
+        font-size: 70%;
+        font-weight: bold;
+        border-radius: var(--borderR);
+        padding: 0.2rem;
+      }
+      .delete {
+        border: 1px solid var(--errorbold);
+        background-color: var(--errorbold);
+        color: var(--brandwhite);
+        width: 50px;
+      }
+      .edit {
+        border: 1px solid var(--brandblue);
+        color: var(--brandblue);
+        padding: 0.2rem 0.5rem;
+        width: 50px;
+      }
+    }
   }
 `;
 

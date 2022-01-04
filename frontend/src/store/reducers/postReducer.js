@@ -8,6 +8,12 @@ import {
   LIKE_POST_THOUGHT_REQUEST,
   LIKE_POST_THOUGHT_SUCCESS,
   LIKE_POST_THOUGHT_FAIL,
+  GET_USER_THOT_REQUEST,
+  GET_USER_THOT_SUCCESS,
+  GET_USER_THOT_FAIL,
+  DELETE_USER_THOT_REQUEST,
+  DELETE_USER_THOT_SUCCESS,
+  DELETE_USER_THOT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought = (state = {}, action) => {
@@ -44,6 +50,32 @@ export const likePost = (state = {}, action) => {
       return { loading: false, posts: action.payload };
     case LIKE_POST_THOUGHT_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const getUserThought = (state = {}, action) => {
+  switch (action.type) {
+    case GET_USER_THOT_REQUEST:
+      return { loading: true };
+    case GET_USER_THOT_SUCCESS:
+      return { loading: false, userThought: action.payload };
+    case GET_USER_THOT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const deleteUserThought = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_USER_THOT_REQUEST:
+      return { delete_thot_loading: true };
+    case DELETE_USER_THOT_SUCCESS:
+      return { delete_thot_loading: false, delThought: action.payload };
+    case DELETE_USER_THOT_FAIL:
+      return { delete_thot_loading: false, error: action.payload };
     default:
       return state;
   }

@@ -37,6 +37,8 @@ const Profilestyle = styled.div`
         h4 {
           font-size: 80%;
           text-transform: capitalize;
+          color: var(--brandblue);
+          font-weight: bold;
         }
         p {
           font-size: 50%;
@@ -70,6 +72,56 @@ const Profilestyle = styled.div`
               color: var(--brandblue);
             }
           }
+        }
+      }
+    }
+  }
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  .user__data {
+    margin-top: 1rem;
+    menu {
+      min-height: 500px;
+      margin-top: 1rem;
+      .loading {
+        height: 100%;
+        width: 100%;
+        .circle__svg-circle circle {
+          stroke: var(--brandblue) !important;
+        }
+      }
+      background-color: var(--layoutBg);
+    }
+    nav {
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid var(--backgroundDark);
+      ul {
+        display: flex;
+        width: 270px;
+        justify-content: space-between;
+        a {
+          flex: 1;
+          font-size: 60%;
+          button {
+            padding: 0.5rem;
+          }
+          &:hover {
+            color: var(--brandblue);
+            font-weight: bold;
+            border-bottom: 2px solid var(--brandblue);
+          }
+        }
+        a.activeBar {
+          color: var(--brandblue);
+          font-weight: bold;
+          border-bottom: 2px solid var(--brandblue);
         }
       }
     }

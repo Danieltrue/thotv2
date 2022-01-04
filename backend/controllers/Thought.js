@@ -64,7 +64,7 @@ exports.getAllThought = async (req, res, next) => {
 };
 //Like Thoughts
 //@Route /thot/post/like/:id?postid=postid
-//@Route Private
+//@Access Private
 exports.likeThought = async (req, res, next) => {
   try {
     const userWhoLike = req.params.id;
@@ -95,6 +95,38 @@ exports.likeThought = async (req, res, next) => {
       postLiked.likes = postLiked.wholiked.length;
       await postLiked.save();
     }
+  } catch (err) {
+    next(new ErrorResponse(`Something Went Wrong`, 500));
+  }
+};
+//Get User Thoght
+//@Route /thot/post/:id/thot
+//@Access Private
+exports.getUserThought = async (req, res, next) => {
+  try {
+    const findThought = await thought
+      .find({ user: req.params.id })
+      .populate({ path: "user", select: "-password" })
+      .populate({ path: "category" });
+
+    if (!findThought)
+      return await next(new ErrorResponse(`Can't Find Thought`, 404));
+
+    return res.status(200).json({
+      findThought,
+    });
+  } catch (err) {
+    next(new ErrorResponse(`Something Went Wrong`, 500));
+  }
+};
+//Delete User Thought
+//@Route /thot/post/:id/delete
+//@Access Private
+exports.deleteUserThought = async (req, res, next) => {
+  try {
+    const findThought = await thought.findByIdAndDelete(req.params.id);
+
+    if (findThought) return res.status(200).json({ success: true });
   } catch (err) {
     next(new ErrorResponse(`Something Went Wrong`, 500));
   }

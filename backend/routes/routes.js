@@ -9,6 +9,8 @@ const {
   createThought,
   getAllThought,
   likeThought,
+  getUserThought,
+  deleteUserThought,
 } = require("../controllers/Thought");
 //Route
 router.route("/register").post(registerUser);
@@ -18,4 +20,6 @@ router.route("/profile").get(protect, getProfile);
 router.route("/create-post").post(protect, createThought);
 router.route("/post").get(getAllThought);
 router.route("/post/like/:id").put(protect, likeThought);
+router.route("/post/:id/thot").get(protect, getUserThought);
+router.route("/post/:id/delete").delete(protect, deleteUserThought);
 module.exports = router;

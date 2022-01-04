@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Markup } from "interweave";
 import ReactTimeAgo from "react-time-ago";
 import TimeAgo from "javascript-time-ago";
+import Spinner from "./Spinner";
 import {
   AiOutlineEllipsis,
   AiOutlineHeart,
@@ -12,15 +13,16 @@ import {
 } from "react-icons/ai";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
-import { likepost } from "../store/actions/postAction";
+import { likepost, deleteUserThought } from "../store/actions/postAction";
 import Topic from "./Topic";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
-const Card = ({ post }) => {
+const Card = ({ post, profile }) => {
   const dispatch = useDispatch();
   const [dp, setDp] = useState("");
   const [postDate, setPostDate] = useState("");
+  const [evt, setEvt] = useState("");
 
   useEffect(() => {
     const one = post.user.firstname.split("")[0];
@@ -34,9 +36,24 @@ const Card = ({ post }) => {
     }
   }, [post]);
 
+  //Delete Thot Selector
+  const deletedThought = useSelector((state) => state.deletedThought);
+  const { delete_thot_loading, error, delThought } = deletedThought;
+
+  useEffect(() => {
+    if (delThought) {
+      evt.target.parentElement.parentElement.parentElement.remove();
+    }
+  }, [dispatch, delThought]);
+
   //Like Post Function
   function likePost() {
     dispatch(likepost(post._id));
+  }
+  //delete thought
+  function deleteThot(e) {
+    dispatch(deleteUserThought(post._id));
+    setEvt(e);
   }
   return (
     <Cardstyle>
@@ -93,7 +110,7 @@ const Card = ({ post }) => {
           .<p>{postDate}</p>
         </div>
       </div>
-      <div className="post--meta-fill">
+      <div className="post--meta-fill center-sbtw">
         <ul className="center-sbtw">
           <li className="like_button">
             <button onClick={likePost}>
@@ -106,6 +123,18 @@ const Card = ({ post }) => {
             </button>
           </li>
         </ul>
+        {profile ? (
+          <ul className="center-sbtw profileFt">
+            <button className="delete center" onClick={deleteThot}>
+              {delete_thot_loading ? <Spinner /> : " Delete"}
+            </button>
+            <Link to={`/write/${post._id}/edit`}>
+              <button className="edit center">Edit</button>
+            </Link>
+          </ul>
+        ) : (
+          ""
+        )}
       </div>
     </Cardstyle>
   );
