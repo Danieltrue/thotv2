@@ -15,6 +15,9 @@ import {
   DELETE_USER_THOT_REQUEST,
   DELETE_USER_THOT_SUCCESS,
   DELETE_USER_THOT_FAIL,
+  GET_SINGLE_THOT_REQUEST,
+  GET_SINGLE_THOT_SUCCESS,
+  GET_SINGLE_THOT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought =
@@ -182,6 +185,35 @@ export const deleteUserThought = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: DELETE_USER_THOT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.responseerror.response.data.message
+          : error.response,
+    });
+  }
+};
+
+export const getSingleThot = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_SINGLE_THOT_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-type": "Application/json",
+      },
+    };
+
+    const data = await axios.get(`/thot/post/${id}`, config);
+
+    dispatch({
+      type: GET_SINGLE_THOT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_SINGLE_THOT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.responseerror.response.data.message

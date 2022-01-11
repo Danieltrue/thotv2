@@ -14,6 +14,9 @@ import {
   DELETE_USER_THOT_REQUEST,
   DELETE_USER_THOT_SUCCESS,
   DELETE_USER_THOT_FAIL,
+  GET_SINGLE_THOT_REQUEST,
+  GET_SINGLE_THOT_SUCCESS,
+  GET_SINGLE_THOT_FAIL,
 } from "../constants/postConstant";
 
 export const postThought = (state = {}, action) => {
@@ -58,11 +61,11 @@ export const likePost = (state = {}, action) => {
 export const getUserThought = (state = {}, action) => {
   switch (action.type) {
     case GET_USER_THOT_REQUEST:
-      return { loading: true };
+      return { user_thot_loading: true };
     case GET_USER_THOT_SUCCESS:
-      return { loading: false, userThought: action.payload };
+      return { user_thot_loading: false, userThought: action.payload };
     case GET_USER_THOT_FAIL:
-      return { loading: false, error: action.payload };
+      return { user_thot_loading: false, user_thot_error: action.payload };
     default:
       return state;
   }
@@ -76,6 +79,19 @@ export const deleteUserThought = (state = {}, action) => {
       return { delete_thot_loading: false, delThought: action.payload };
     case DELETE_USER_THOT_FAIL:
       return { delete_thot_loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const getSingleThot = (state = {}, action) => {
+  switch (action.type) {
+    case GET_SINGLE_THOT_REQUEST:
+      return { single_thot_loading: true };
+    case GET_SINGLE_THOT_SUCCESS:
+      return { single_thot_loading: false, singleThought: action.payload };
+    case GET_SINGLE_THOT_FAIL:
+      return { single_thot_loading: false, single_thot_error: action.payload };
     default:
       return state;
   }

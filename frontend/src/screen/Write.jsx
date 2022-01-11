@@ -5,15 +5,14 @@ import Writestyle from "../style/components/Write";
 import Container from "../components/Container";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { postThought } from "../store/actions/postAction";
+import { useNavigate, useParams } from "react-router-dom";
+import { postThought, getSingleThot } from "../store/actions/postAction";
 import Spinner from "../components/Spinner";
 
-const Write = () => {
+const Write = ({ edit }) => {
   let [message, setMessage] = useState("");
   let [topic, setTopic] = useState("");
+  const [datas, setDatas] = useState("");
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -23,14 +22,28 @@ const Write = () => {
   const postedThought = useSelector((state) => state.postedThought);
 
   const navigate = useNavigate();
+  const params = useParams();
 
-  function changeTheData(msg) {
-    setMessage(msg);
-  }
+  const singleThoughtData = useSelector((state) => state.singleThought);
+  const { single_thot_loading, single_thot_error, singleThought } =
+    singleThoughtData;
+
+  useEffect(() => {
+    if (singleThought && singleThought.data.findThought._id !== params.id) {
+      dispatch(getSingleThot(params.id));
+    }
+    if (singleThought) {
+      let string = singleThought.data.findThought.body.replace("<p>", "");
+      string = string.replace("</p>", "");
+      setDatas(string);
+    }
+  }, [dispatch, singleThought]);
 
   function handlePost(e) {
     e.preventDefault();
-    dispatch(postThought(message, topic));
+    if (!edit) {
+      dispatch(postThought(message, topic));
+    }
   }
 
   useEffect(() => {
@@ -45,19 +58,17 @@ const Write = () => {
       <Container>
         <form onSubmit={handlePost} className="write__box">
           <div>
-            <CKEditor
-              editor={ClassicEditor}
-              data={`${message}`}
-              onReady={(editor) => {
-                // You can store the "editor" and use when it is needed.
-              }}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                changeTheData(data);
-              }}
-              onBlur={(event, editor) => {}}
-              onFocus={(event, editor) => {}}
-            />
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              minLength={10}
+              maxLength={200}
+              placeholder="Share Your Thoughts...."
+              onChange={(evt) => setMessage(evt.target.value)}
+              value={single_thot_loading ? "" : datas}
+            ></textarea>
           </div>
           <div className="category-search-post">
             <input
@@ -67,9 +78,15 @@ const Write = () => {
             />
           </div>
           <div className="button-pack">
-            <button className="btn">
-              {postedThought.loading ? <Spinner /> : "Post"}
-            </button>
+            {!edit ? (
+              <button className="btn">
+                {postedThought.loading ? <Spinner /> : "Post"}
+              </button>
+            ) : (
+              <button className="btn">
+                {postedThought.loading ? <Spinner /> : "Update"}
+              </button>
+            )}
           </div>
         </form>
       </Container>

@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Profilestyle from "../style/components/Profile";
 import Container from "../components/Container";
-import { useSelector } from "react-redux";
-import {
-  useNavigate,
-  Link,
-  useParams,
-  Outlet,
-  useOutlet,
-  OutletProps,
-  NavLink,
-} from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, Link, useParams, NavLink } from "react-router-dom";
 import Thot from "../components/Thot";
+import Spinner from "../components/Spinner";
+import { getUserThought } from "../store/actions/postAction";
 
 const Profile = () => {
   const [dp, setDp] = useState("");
+  const [thot, setThot] = useState([]);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
   const params = useParams();
 
   useEffect(() => {
@@ -30,6 +27,21 @@ const Profile = () => {
       setDp(one + two);
     }
   }, []);
+
+  //User Thought
+
+  const userThoughts = useSelector((state) => state.userThought);
+  const { user_thot_loading, user_thot_error, userThought } = userThoughts;
+
+  useEffect(() => {
+    if (!userThought) {
+      dispatch(getUserThought(params.id));
+    }
+    if (userThought) {
+      setThot(userThought.data.findThought);
+    }
+    console.log(user_thot_loading);
+  }, [dispatch, userThought]);
 
   return (
     <Profilestyle>
@@ -106,7 +118,7 @@ const Profile = () => {
           </nav>
           <menu>
             <div className="thots">
-              <Thot params={params} />
+              {user_thot_loading ? <Spinner /> : <Thot thot={thot} />}
             </div>
           </menu>
         </main>

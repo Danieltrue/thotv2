@@ -67,6 +67,7 @@ exports.loginUser = async (req, res, next) => {
       followers: foundUser.followers,
       following: foundUser.following,
       thoughts: foundUser.thoughts,
+      liked: foundUser.liked,
       token: generateToken(foundUser._id),
     });
   } catch (err) {

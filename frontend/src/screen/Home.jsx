@@ -6,7 +6,7 @@ import { logged } from "../store/actions/userAction";
 import { getAllThought } from "../store/actions/postAction";
 import CardBox from "../components/CardBox";
 
-const Home = () => {
+const Home = ({ history, match }) => {
   const [postsData, setPostsData] = useState({});
   const dispatch = useDispatch();
 
@@ -26,6 +26,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(logged());
   }, [dispatch]);
+
   return (
     <Homestyle>
       <Nav btn={true} />

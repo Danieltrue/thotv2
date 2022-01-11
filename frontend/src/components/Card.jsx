@@ -10,6 +10,7 @@ import {
   AiOutlineEllipsis,
   AiOutlineHeart,
   AiOutlineRetweet,
+  AiFillHeart,
 } from "react-icons/ai";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
@@ -23,6 +24,10 @@ const Card = ({ post, profile }) => {
   const [dp, setDp] = useState("");
   const [postDate, setPostDate] = useState("");
   const [evt, setEvt] = useState("");
+  const [liked, setLiked] = useState(false);
+
+  const userData = useSelector((state) => state.userLogin);
+  const { userInfo } = userData;
 
   useEffect(() => {
     const one = post.user.firstname.split("")[0];
@@ -34,7 +39,7 @@ const Card = ({ post, profile }) => {
       const y = new Date(post.dateposted).getUTCFullYear();
       setPostDate(`${d}/${m}/${y}`);
     }
-  }, [post]);
+  }, [post, userInfo]);
 
   //Delete Thot Selector
   const deletedThought = useSelector((state) => state.deletedThought);
@@ -57,7 +62,7 @@ const Card = ({ post, profile }) => {
   }
   return (
     <Cardstyle>
-      <div className="userDetail">
+      <div onClick={console.log(liked)} className="userDetail">
         <div className="detail center-sbtw">
           <ul className="detail__inner center-sbtw">
             <div className="profileimage center">
@@ -113,9 +118,15 @@ const Card = ({ post, profile }) => {
       <div className="post--meta-fill center-sbtw">
         <ul className="center-sbtw">
           <li className="like_button">
-            <button onClick={likePost}>
-              <AiOutlineHeart />
-            </button>
+            {liked === true ? (
+              <button onClick={likePost}>
+                <AiFillHeart />
+              </button>
+            ) : (
+              <button onClick={likePost}>
+                <AiOutlineHeart />
+              </button>
+            )}
           </li>
           <li className="rethot_button">
             <button>

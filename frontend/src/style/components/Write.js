@@ -13,18 +13,24 @@ const Writestyle = styled.div`
     align-items: center;
     width: auto;
     & > div:first-of-type {
-      font-size: 60%;
-      .ck {
-        max-width: 500px;
-      }
-      div.ck-editor__editable {
-        min-height: 200px;
+      textarea {
+        background-color: var(--lightdark);
+        padding: var(--rem);
+        font-size: 70%;
+        width: 450px;
+        border-radius: var(--borderR);
+        height: 200px;
+        &::placeholder {
+          font-size: 80%;
+          opacity: 0.8;
+        }
       }
     }
     .category-search-post {
       width: 100%;
       margin-top: 1rem;
       input {
+        border-radius: var(--borderR);
         width: 100%;
         border: 1px solid var(--borderLine);
         padding: 0.3rem 1rem;

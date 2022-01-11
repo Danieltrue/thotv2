@@ -11,6 +11,7 @@ const {
   likeThought,
   getUserThought,
   deleteUserThought,
+  getSingleThought,
 } = require("../controllers/Thought");
 //Route
 router.route("/register").post(registerUser);
@@ -22,4 +23,5 @@ router.route("/post").get(getAllThought);
 router.route("/post/like/:id").put(protect, likeThought);
 router.route("/post/:id/thot").get(protect, getUserThought);
 router.route("/post/:id/delete").delete(protect, deleteUserThought);
+router.route("/post/:id").get(getSingleThought);
 module.exports = router;

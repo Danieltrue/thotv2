@@ -4,7 +4,7 @@ const category = require("../model/Category");
 
 const ErrorResponse = require("../utils/errorResponse");
 //@Desc create a thought
-//@Route /thot/create-post
+//@Route POST /thot/create-post
 //@Access Private
 exports.createThought = async (req, res, next) => {
   try {
@@ -47,7 +47,7 @@ exports.createThought = async (req, res, next) => {
   }
 };
 //@Desc get all thought
-//@Route /thot/post
+//@Route GET /thot/post
 //@Access Public
 exports.getAllThought = async (req, res, next) => {
   try {
@@ -63,7 +63,7 @@ exports.getAllThought = async (req, res, next) => {
   } catch (err) {}
 };
 //Like Thoughts
-//@Route /thot/post/like/:id?postid=postid
+//@Route PUT /thot/post/like/:id?postid=postid
 //@Access Private
 exports.likeThought = async (req, res, next) => {
   try {
@@ -100,7 +100,7 @@ exports.likeThought = async (req, res, next) => {
   }
 };
 //Get User Thoght
-//@Route /thot/post/:id/thot
+//@Route GET /thot/post/:id/thot
 //@Access Private
 exports.getUserThought = async (req, res, next) => {
   try {
@@ -120,13 +120,28 @@ exports.getUserThought = async (req, res, next) => {
   }
 };
 //Delete User Thought
-//@Route /thot/post/:id/delete
+//@Route DELETE /thot/post/:id/delete
 //@Access Private
 exports.deleteUserThought = async (req, res, next) => {
   try {
     const findThought = await thought.findByIdAndDelete(req.params.id);
 
     if (findThought) return res.status(200).json({ success: true });
+  } catch (err) {
+    next(new ErrorResponse(`Something Went Wrong`, 500));
+  }
+};
+//@Desc Get Single Thought
+//@Route GET /thot/post/:id
+//@Access Public
+exports.getSingleThought = async (req, res, next) => {
+  try {
+    const findThought = await thought
+      .findById(req.params.id)
+      .select("-user")
+      .populate({ path: "category", select: "name" });
+
+    if (findThought) return res.status(200).send({ findThought });
   } catch (err) {
     next(new ErrorResponse(`Something Went Wrong`, 500));
   }

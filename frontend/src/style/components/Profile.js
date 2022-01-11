@@ -101,7 +101,6 @@ const Profilestyle = styled.div`
     nav {
       width: 100%;
       height: 50px;
-      border-bottom: 1px solid var(--backgroundDark);
       ul {
         display: flex;
         width: 270px;
@@ -109,6 +108,8 @@ const Profilestyle = styled.div`
         a {
           flex: 1;
           font-size: 60%;
+          font-weight: bold;
+          border-bottom: 2px solid transparent;
           button {
             padding: 0.5rem;
           }
