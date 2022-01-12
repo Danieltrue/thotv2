@@ -146,3 +146,7 @@ exports.getSingleThought = async (req, res, next) => {
     next(new ErrorResponse(`Something Went Wrong`, 500));
   }
 };
+//@Desc get the Liked Thought
+//@Route GET /thot/liked/:id
+//@Access Private
+exports.getTheUserLikedThought = async (req, res, next) => {};

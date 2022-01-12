@@ -12,6 +12,7 @@ import Spinner from "../components/Spinner";
 const Write = ({ edit }) => {
   let [message, setMessage] = useState("");
   let [topic, setTopic] = useState("");
+  let [load, setLoad] = useState(false);
   const [datas, setDatas] = useState("");
   const dispatch = useDispatch();
 
@@ -25,17 +26,18 @@ const Write = ({ edit }) => {
   const params = useParams();
 
   const singleThoughtData = useSelector((state) => state.singleThought);
-  const { single_thot_loading, single_thot_error, singleThought } =
+  let { single_thot_loading, single_thot_error, singleThought } =
     singleThoughtData;
 
   useEffect(() => {
-    if (singleThought && singleThought.data.findThought._id !== params.id) {
+    if (edit && !singleThought) {
       dispatch(getSingleThot(params.id));
     }
     if (singleThought) {
       let string = singleThought.data.findThought.body.replace("<p>", "");
       string = string.replace("</p>", "");
       setDatas(string);
+      loadedData();
     }
   }, [dispatch, singleThought]);
 
@@ -52,6 +54,12 @@ const Write = ({ edit }) => {
     }
   }, [userInfo]);
 
+  //Loading
+  function loadedData() {
+    const text = document.querySelector(".text-editor");
+    text.textContent = singleThought ? datas : "";
+  }
+
   return (
     <Writestyle>
       <Nav btn={false} />
@@ -67,7 +75,7 @@ const Write = ({ edit }) => {
               maxLength={200}
               placeholder="Share Your Thoughts...."
               onChange={(evt) => setMessage(evt.target.value)}
-              value={single_thot_loading ? "" : datas}
+              className="text-editor"
             ></textarea>
           </div>
           <div className="category-search-post">
