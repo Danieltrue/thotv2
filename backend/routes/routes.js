@@ -25,5 +25,5 @@ router.route("/post/like/:id").put(protect, likeThought);
 router.route("/post/:id/thot").get(protect, getUserThought);
 router.route("/post/:id/delete").delete(protect, deleteUserThought);
 router.route("/post/:id").get(getSingleThought);
-router.route("/liked/:id").get(protect, getTheUserLikedThought);
+router.route("/liked/:id/:uid").get(protect, getTheUserLikedThought);
 module.exports = router;

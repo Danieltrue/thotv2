@@ -6,7 +6,7 @@ import { logged } from "../store/actions/userAction";
 import { getAllThought } from "../store/actions/postAction";
 import CardBox from "../components/CardBox";
 
-const Home = ({ history, match }) => {
+const Home = () => {
   const [postsData, setPostsData] = useState({});
   const dispatch = useDispatch();
 
@@ -18,6 +18,7 @@ const Home = ({ history, match }) => {
 
   useEffect(() => {
     dispatch(getAllThought());
+
     if (allThought.posts) {
       setPostsData(allThought.posts);
     }

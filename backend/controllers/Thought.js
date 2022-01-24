@@ -149,4 +149,16 @@ exports.getSingleThought = async (req, res, next) => {
 //@Desc get the Liked Thought
 //@Route GET /thot/liked/:id
 //@Access Private
-exports.getTheUserLikedThought = async (req, res, next) => {};
+exports.getTheUserLikedThought = async (req, res, next) => {
+  try {
+    const checkLiked = await thought.findOne({ _id: req.params.id });
+
+    //find the id in the thought
+    const foundUserinliked = await checkLiked.wholiked.includes(req.params.uid);
+
+    if (!foundUserinliked) return await res.status(404).json({ liked: false });
+    return await res.status(200).json({ liked: true });
+  } catch (err) {
+    next(new ErrorResponse(`Something Went Wrong`, 500));
+  }
+};

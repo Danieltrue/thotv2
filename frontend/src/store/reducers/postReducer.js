@@ -17,6 +17,9 @@ import {
   GET_SINGLE_THOT_REQUEST,
   GET_SINGLE_THOT_SUCCESS,
   GET_SINGLE_THOT_FAIL,
+  CHECK_LIKED_REQUEST,
+  CHECK_LIKED_SUCCESS,
+  CHECK_LIKED_FAIL,
 } from "../constants/postConstant";
 
 export const postThought = (state = {}, action) => {
@@ -92,6 +95,22 @@ export const getSingleThot = (state = {}, action) => {
       return { single_thot_loading: false, singleThought: action.payload };
     case GET_SINGLE_THOT_FAIL:
       return { single_thot_loading: false, single_thot_error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const checkLikedThought = (state = {}, action) => {
+  switch (action.type) {
+    case CHECK_LIKED_REQUEST:
+      return { check_liked_loading: true };
+    case CHECK_LIKED_SUCCESS:
+      return {
+        check_liked_loading: false,
+        likedThoughtPayload: action.payload,
+      };
+    case CHECK_LIKED_FAIL:
+      return { check_liked_loading: false, check_liked_error: action.payload };
     default:
       return state;
   }

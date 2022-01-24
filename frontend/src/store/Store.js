@@ -14,6 +14,7 @@ import {
   getUserThought,
   deleteUserThought,
   getSingleThot,
+  checkLikedThought,
 } from "./reducers/postReducer";
 
 const reducer = combineReducers({
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   userThought: getUserThought,
   deletedThought: deleteUserThought,
   singleThought: getSingleThot,
+  likedThought: checkLikedThought,
 });
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))

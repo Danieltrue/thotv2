@@ -18,6 +18,9 @@ import {
   GET_SINGLE_THOT_REQUEST,
   GET_SINGLE_THOT_SUCCESS,
   GET_SINGLE_THOT_FAIL,
+  CHECK_LIKED_REQUEST,
+  CHECK_LIKED_SUCCESS,
+  CHECK_LIKED_FAIL,
 } from "../constants/postConstant";
 
 export const postThought =
@@ -214,6 +217,43 @@ export const getSingleThot = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_SINGLE_THOT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.responseerror.response.data.message
+          : error.response,
+    });
+  }
+};
+
+export const getUserlikedThought = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: CHECK_LIKED_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.data.token}`,
+      },
+    };
+
+    const data = await axios.get(
+      `/thot/liked/${id}/${userInfo.data.id}`,
+      config
+    );
+
+    dispatch({
+      type: CHECK_LIKED_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CHECK_LIKED_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.responseerror.response.data.message

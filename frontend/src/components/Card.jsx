@@ -14,7 +14,11 @@ import {
 } from "react-icons/ai";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
-import { likepost, deleteUserThought } from "../store/actions/postAction";
+import {
+  likepost,
+  deleteUserThought,
+  getUserlikedThought,
+} from "../store/actions/postAction";
 import Topic from "./Topic";
 
 TimeAgo.addDefaultLocale(en);
@@ -51,10 +55,26 @@ const Card = ({ post, profile }) => {
     }
   }, [dispatch, delThought]);
 
+  //Get Liked Thought
+  const likedThought = useSelector((state) => state.likedThought);
+  const { check_liked_loading, likedThoughtPayload, check_liked_error } =
+    likedThought;
+
+  useEffect(() => {
+    dispatch(getUserlikedThought(post._id));
+  }, []);
+
+  useEffect(() => {
+    if (likedThoughtPayload) {
+      setLiked(likedThoughtPayload.data.liked);
+    }
+  }, [dispatch, likedThoughtPayload]);
+
   //Like Post Function
   function likePost() {
     dispatch(likepost(post._id));
   }
+
   //delete thought
   function deleteThot(e) {
     dispatch(deleteUserThought(post._id));

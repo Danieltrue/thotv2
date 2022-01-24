@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 const Thot = ({ thot }) => {
-  console.log(thot);
   if (thot === []) {
     return "loading";
   }
